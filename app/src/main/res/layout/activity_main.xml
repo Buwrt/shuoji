@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1E1E1E"
+        android:padding="12dp"
+        android:text="@string/home_status_idle"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:columnCount="2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_device"
+            style="@style/VioletButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:text="@string/btn_device" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_fastboot"
+            style="@style/VioletButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:text="@string/btn_fastboot" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_boot_flash"
+            style="@style/VioletButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:text="@string/btn_boot_flash" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_flash_center"
+            style="@style/VioletButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:text="@string/btn_flash_center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_terminal"
+            style="@style/VioletButton.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:text="@string/btn_terminal" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_wireless"
+            style="@style/VioletButton.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:text="@string/btn_wireless" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_rom"
+            style="@style/VioletButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:text="@string/btn_rom" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_diagnose"
+            style="@style/VioletButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:text="@string/btn_diagnose" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sideload"
+            style="@style/VioletButton.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="5"
+            android:layout_column="0"
+            android:text="@string/btn_sideload" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_help"
+            style="@style/VioletButton.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="5"
+            android:layout_column="1"
+            android:text="@string/btn_help" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_scan"
+            style="@style/VioletButton.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="6"
+            android:layout_column="0"
+            android:text="@string/btn_scan" />
+
+    </GridLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="@string/log_title"
+        android:textColor="#CE93D8"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/log_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:background="@color/log_bg"
+        android:padding="6dp">
+
+        <TextView
+            android:id="@+id/tv_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/log_text"
+            android:textSize="11sp"
+            android:typeface="monospace" />
+    </ScrollView>
+
+</LinearLayout>

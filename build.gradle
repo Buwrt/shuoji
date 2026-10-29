@@ -1,0 +1,8 @@
+// 根目录构建脚本（紫罗兰工具箱手机版）
+plugins {
+    id 'com.android.application' version '8.5.2' apply false
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.layout.buildDirectory
+}

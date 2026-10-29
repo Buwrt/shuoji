@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- USB 设备过滤器：ADB 调试接口与 Fastboot / FastbootD 接口 -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ADB 接口：Class=0xFF, SubClass=0x42, Protocol=0x01 -->
+    <usb-device
+        android:class="255"
+        android:subclass="66"
+        android:protocol="1" />
+
+    <!-- Fastboot / FastbootD 接口：Protocol=0x03 -->
+    <usb-device
+        android:class="255"
+        android:subclass="66"
+        android:protocol="3" />
+
+    <!-- 高通 EDL（9008）常见 VID/PID，便于后续扩展 -->
+    <usb-device
+        android:vendor-id="51966"
+        android:product-id="36881" />
+</resources>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- USB Host（OTG）：主手机作为主机控制副手机，无需 Root -->
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="false" />
+
+    <!-- 无线 ADB（同一 WiFi 下控制副手机） -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 刷机过程中保持 CPU 唤醒，避免传输中断 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name=".VioletApp"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_launcher"
+        android:supportsRtl="false"
+        android:theme="@style/Theme.VioletToolBox"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- 插入 OTG 线后自动唤起本应用 -->
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+        </activity>
+
+        <activity
+            android:name=".ui.DeviceActivity"
+            android:exported="false"
+            android:label="@string/title_device"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.FastbootActivity"
+            android:exported="false"
+            android:label="@string/title_fastboot"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.BootFlashActivity"
+            android:exported="false"
+            android:label="@string/title_boot_flash"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.FlashCenterActivity"
+            android:exported="false"
+            android:label="@string/title_flash_center"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.TerminalActivity"
+            android:exported="false"
+            android:label="@string/title_terminal"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.RomUnpackActivity"
+            android:exported="false"
+            android:label="@string/title_rom_unpack"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.DiagnoseActivity"
+            android:exported="false"
+            android:label="@string/title_diagnose"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.SideloadActivity"
+            android:exported="false"
+            android:label="@string/title_sideload"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.HelpActivity"
+            android:exported="false"
+            android:label="@string/title_help"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

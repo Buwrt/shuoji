@@ -1,24 +1,25 @@
-This is free and unencumbered software released into the public domain.
+紫罗兰工具箱（手机版） VioletToolBox Mobile
+Copyright (C) 2026 VioletToolBox Mobile contributors
 
-Anyone is free to copy, modify, publish, use, compile, sell, or
-distribute this software, either in source code form or as a compiled
-binary, for any purpose, commercial or non-commercial, and by any
-means.
+本项目为自由软件：你可以依据自由软件基金会发布的 GNU 通用公共许可证第三版
+（GNU General Public License v3.0，简称 GPL-3.0）或（按你的选择）任何更新版本，
+重新发布或修改它。
 
-In jurisdictions that recognize copyright laws, the author or authors
-of this software dedicate any and all copyright interest in the
-software to the public domain. We make this dedication for the benefit
-of the public at large and to the detriment of our heirs and
-successors. We intend this dedication to be an overt act of
-relinquishment in perpetuity of all present and future rights to this
-software under copyright law.
+发布本项目的目的是希望它有用，但不提供任何担保；甚至不保证其适销性或
+适用于某一特定目的。详见 GNU 通用公共许可证。
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
+本程序应随附 GNU 通用公共许可证副本；如未随附，请访问：
+https://www.gnu.org/licenses/gpl-3.0.html
+获取完整许可证全文。
 
-For more information, please refer to <https://unlicense.org>
+本项目的实现参考了以下开源项目（各按其原始许可证）：
+· Smart-Paocai/VioletToolBox                  GPL-3.0
+· google/fastboot-mobile                      Apache-2.0
+· RohitVerma882/fastboot-java                 Apache-2.0
+· cgutman/AdbLib                              BSD
+· flyfishxu/Kadb                              Apache-2.0
+· sky22333/skyadb                             GPL-3.0
+· rhythmcache/Dioxamine                       Apache-2.0
+
+免责声明：刷机操作存在导致设备无法启动、数据丢失的风险，
+请在操作前完整备份数据，因使用本工具造成的任何损失由使用者自行承担。

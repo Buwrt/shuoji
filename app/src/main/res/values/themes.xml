@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.VioletToolBox" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/violet_primary</item>
+        <item name="colorPrimaryDark">@color/violet_primary_dark</item>
+        <item name="colorAccent">@color/violet_accent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+    <style name="VioletButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="VioletButton.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">@color/violet_accent</item>
+    </style>
+</resources>
