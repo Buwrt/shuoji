@@ -16,9 +16,11 @@ public class HelpActivity extends BaseActivity {
         setContentView(R.layout.activity_help);
         TextView tv = findViewById(R.id.tv_help);
         if (tv != null) {
-            tv.setText(getString(R.string.help_steps)
-                    + "\n\n" + getString(R.string.help_disclaimer)
-                    + "\n\n" + getString(R.string.help_refs));
+            tv.setText(getString(R.string.help_steps));
+        }
+        TextView refs = findViewById(R.id.tv_refs);
+        if (refs != null) {
+            refs.setText(getString(R.string.help_refs));
         }
     }
 }

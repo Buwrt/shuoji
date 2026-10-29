@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -75,11 +76,13 @@ public class RomUnpackActivity extends BaseActivity {
     private void buildUi() {
         LinearLayout container = findViewById(R.id.container);
 
+        addSection("解包设置");
         etPartitions = new AppCompatEditText(this);
         etPartitions.setHint("只解这些分区（留空=全部），逗号分隔，如 boot,init_boot,vbmeta");
         etPartitions.setSingleLine(true);
-        etPartitions.setTextColor(0xFFFFFFFF);
+        etPartitions.setTextColor(ContextCompat.getColor(this, R.color.text_primary));
         etPartitions.setTextSize(13f);
+        styleInput(etPartitions);
         etPartitions.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         if (container != null) {
@@ -89,6 +92,7 @@ public class RomUnpackActivity extends BaseActivity {
         addButton("① 选择 ROM 包（zip / payload.bin / ofp / ops / ozip）",
                 v -> romLauncher.launch(new String[]{"*/*"}));
 
+        addSection("执行");
         addButton("② 开始解包", v -> startUnpack());
 
         addButton("解出后：合并 super 分片（super.0/1/2 → super.img）", v -> mergeSuper());
@@ -100,7 +104,7 @@ public class RomUnpackActivity extends BaseActivity {
                 startActivity(new Intent(this, FlashCenterActivity.class)));
 
         tvResult = new TextView(this);
-        tvResult.setTextColor(0xFFCE93D8);
+        tvResult.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
         tvResult.setTextSize(12f);
         tvResult.setText("解包结果会显示在这里");
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(

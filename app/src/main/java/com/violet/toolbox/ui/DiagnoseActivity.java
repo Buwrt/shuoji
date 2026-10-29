@@ -1,5 +1,7 @@
 package com.violet.toolbox.ui;
 
+import androidx.core.content.ContextCompat;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -33,12 +35,14 @@ public class DiagnoseActivity extends BaseActivity {
     private void buildUi() {
         LinearLayout container = findViewById(R.id.container);
 
+        addSection("连接检测");
         addButton("重新诊断连接环境", v -> runDiagnostics());
 
         addButton("运行协议层自检（不需连接副手机）", v -> runSelfTest());
 
         addButton("真机连通性验证（getvar / 读设备信息）", v -> runLiveCheck());
 
+        addSection("帮助与指引");
         addButton("副手机无法开启 USB 调试怎么办", v -> {
             String guide = OtgDiagnostics.noUsbDebugGuide();
             log(guide);
@@ -49,7 +53,7 @@ public class DiagnoseActivity extends BaseActivity {
                 startActivity(new Intent(this, SideloadActivity.class)));
 
         TextView tv = new TextView(this);
-        tv.setTextColor(0xFFCE93D8);
+        tv.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
         tv.setTextSize(12f);
         tv.setText("提示：若副手机无法开机，通常仍可进 fastboot；"
                 + "若系统起不来但能进 Recovery，用 Sideload 官方包救回最快。");

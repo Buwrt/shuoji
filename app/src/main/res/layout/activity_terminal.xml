@@ -1,57 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 命令终端：提示面板 + 输入行 + 日志面板 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="12dp">
-
-    <TextView
-        android:id="@+id/tv_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#1E1E1E"
-        android:padding="10dp"
-        android:text="@string/term_tip"
-        android:textColor="#FFFFFF"
-        android:textSize="13sp" />
+    android:background="@color/bg_base"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/bg_panel_status"
+        android:orientation="horizontal"
+        android:padding="14dp">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/violet_accent" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/term_tip"
+            android:textColor="@color/text_primary"
+            android:textSize="12.5sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="14dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_command"
+            style="@style/VioletEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
+            android:background="@drawable/bg_edittext"
             android:hint="@string/term_hint"
             android:imeOptions="actionSend"
-            android:singleLine="true"
-            android:textColor="#FFFFFF"
-            android:textSize="13sp" />
+            android:singleLine="true" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/term_send" />
+            android:layout_height="48dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="72dp"
+            android:text="@string/term_send"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:cornerRadius="14dp"
+            app:backgroundTint="@color/violet_primary_dark" />
     </LinearLayout>
+
+    <TextView
+        style="@style/SectionTitle"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:text="@string/log_title" />
 
     <ScrollView
         android:id="@+id/log_scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="14dp"
         android:layout_weight="1"
-        android:background="@color/log_bg"
-        android:padding="6dp">
+        android:background="@drawable/bg_log_panel"
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/tv_log"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:lineSpacingExtra="2dp"
             android:textColor="@color/log_text"
             android:textSize="11sp"
             android:typeface="monospace" />

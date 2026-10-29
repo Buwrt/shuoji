@@ -104,5 +104,24 @@
     <!-- 帮助 -->
     <string name="help_disclaimer">免责声明：刷机有风险，操作前请备份数据。因使用本工具造成的设备损坏或数据丢失，作者不承担任何责任。</string>
     <string name="help_steps">使用步骤：\n1. 主手机安装本应用并开启 OTG；\n2. 副手机开启「开发者选项 - USB 调试」；\n3. 用 OTG 转接头 + 数据线连接两台手机；\n4. 主手机弹出 USB 授权时点「允许」，副手机弹出调试授权时点「允许」；\n5. 首页显示已连接后，选择对应功能操作。</string>
+    <!-- 界面文案（新版 UI） -->
+    <string name="home_subtitle">手机对手机刷机 · 无需电脑</string>
+    <string name="section_features">常用功能</string>
+    <string name="panel_status_title">当前状态</string>
+    <string name="panel_status_idle">等待操作</string>
+    <string name="sub_device">信息 / 重启 / 装 APK</string>
+    <string name="sub_fastboot">刷分区 / 解锁 / 切槽</string>
+    <string name="sub_boot_flash">boot · init_boot · vendor_boot</string>
+    <string name="sub_flash_center">小米 / OPPO / 真我 / 一加</string>
+    <string name="sub_rom">payload · OFP · OPS 直解</string>
+    <string name="sub_sideload">Recovery 下刷官方包</string>
+    <string name="sub_diagnose">OTG 检测 · 协议自检</string>
+    <string name="sub_terminal">adb / fastboot 命令</string>
+    <string name="sub_wireless">WiFi 调试连接</string>
+    <string name="sub_help">操作步骤 · 免责声明</string>
+    <string name="help_subtitle">三步上手 · 刷机前请先看完</string>
+    <string name="help_section_steps">使用步骤</string>
+    <string name="help_section_refs">参考与致谢</string>
+
     <string name="help_refs">参考与致谢：\n· VioletToolBox（PC 端紫罗兰工具箱）\n· Google fastboot-mobile / fastboot-java（Apache-2.0）\n· cgutman AdbLib（BSD）ADB 协议与 RSA 认证实现\n· skyadb / Dioxamine：手机对手机 ADB / Fastboot 交互模式</string>
 </resources>

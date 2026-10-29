@@ -9,6 +9,7 @@ import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatEditText;
@@ -30,6 +31,27 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
 
     private static final String ACTION_USB_PERMISSION = "com.violet.toolbox.USB_PERMISSION";
+
+    private View statusDot;
+
+    @Override
+    protected void setStatus(String text) {
+        super.setStatus(text);
+        if (statusDot == null) {
+            return;
+        }
+        int res = R.drawable.bg_dot_idle;
+        if (text != null) {
+            if (text.contains("已连接")) {
+                res = R.drawable.bg_dot_ok;
+            } else if (text.contains("失败") || text.contains("拒绝")) {
+                res = R.drawable.bg_dot_error;
+            } else if (text.contains("正在")) {
+                res = R.drawable.bg_dot_warn;
+            }
+        }
+        statusDot.setBackgroundResource(res);
+    }
 
     private final BroadcastReceiver usbReceiver = new BroadcastReceiver() {
         @Override
@@ -64,21 +86,22 @@ public class MainActivity extends BaseActivity {
         DeviceManager.get().init(this);
         setContentView(R.layout.activity_main);
         bindCommonViews();
+        statusDot = findViewById(R.id.view_status_dot);
 
-        findViewById(R.id.btn_device).setOnClickListener(v -> open(DeviceActivity.class));
-        findViewById(R.id.btn_fastboot).setOnClickListener(v -> open(FastbootActivity.class));
-        findViewById(R.id.btn_boot_flash).setOnClickListener(v -> open(BootFlashActivity.class));
-        findViewById(R.id.btn_flash_center).setOnClickListener(v -> open(FlashCenterActivity.class));
-        findViewById(R.id.btn_terminal).setOnClickListener(v -> open(TerminalActivity.class));
-        findViewById(R.id.btn_rom).setOnClickListener(v -> open(RomUnpackActivity.class));
-        findViewById(R.id.btn_diagnose).setOnClickListener(v -> open(DiagnoseActivity.class));
-        findViewById(R.id.btn_sideload).setOnClickListener(v -> open(SideloadActivity.class));
-        findViewById(R.id.btn_help).setOnClickListener(v -> open(HelpActivity.class));
+        findViewById(R.id.card_device).setOnClickListener(v -> open(DeviceActivity.class));
+        findViewById(R.id.card_fastboot).setOnClickListener(v -> open(FastbootActivity.class));
+        findViewById(R.id.card_boot_flash).setOnClickListener(v -> open(BootFlashActivity.class));
+        findViewById(R.id.card_flash_center).setOnClickListener(v -> open(FlashCenterActivity.class));
+        findViewById(R.id.card_terminal).setOnClickListener(v -> open(TerminalActivity.class));
+        findViewById(R.id.card_rom).setOnClickListener(v -> open(RomUnpackActivity.class));
+        findViewById(R.id.card_diagnose).setOnClickListener(v -> open(DiagnoseActivity.class));
+        findViewById(R.id.card_sideload).setOnClickListener(v -> open(SideloadActivity.class));
+        findViewById(R.id.card_help).setOnClickListener(v -> open(HelpActivity.class));
         findViewById(R.id.btn_scan).setOnClickListener(v -> {
             log("正在扫描 USB 设备……");
             scanAndConnect();
         });
-        findViewById(R.id.btn_wireless).setOnClickListener(v -> showWirelessDialog());
+        findViewById(R.id.card_wireless).setOnClickListener(v -> showWirelessDialog());
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_USB_PERMISSION);

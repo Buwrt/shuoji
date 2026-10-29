@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="violet_primary">#7B1FA2</color>
-    <color name="violet_primary_dark">#4A0072</color>
-    <color name="violet_accent">#CE93D8</color>
-    <color name="black">#FF000000</color>
+
+    <!-- ===== 品牌主色 ===== -->
+    <color name="violet_primary">#FFA855F7</color>
+    <color name="violet_primary_dark">#FF7C3AED</color>
+    <color name="violet_primary_deep">#FF4C1D95</color>
+    <color name="violet_accent">#FF22D3EE</color>
+    <color name="violet_pink">#FFF472B6</color>
+    <color name="violet_blue">#FF60A5FA</color>
+    <color name="violet_green">#FF34D399</color>
+    <color name="violet_orange">#FFFB923C</color>
+
+    <!-- ===== 背景层次（深色） ===== -->
+    <color name="bg_base">#FF0A0812</color>
+    <color name="bg_surface">#FF15111F</color>
+    <color name="bg_card">#FF1D1729</color>
+    <color name="bg_card_highlight">#FF282035</color>
+    <color name="divider">#FF302840</color>
+
+    <!-- ===== 文字 ===== -->
+    <color name="text_primary">#FFF5F2FB</color>
+    <color name="text_secondary">#FFA79FBE</color>
+    <color name="text_hint">#FF6E6688</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="log_bg">#FF101010</color>
-    <color name="log_text">#FF9BE89B</color>
+    <color name="black">#FF000000</color>
+
+    <!-- ===== 状态 ===== -->
+    <color name="state_ok">#FF4ADE80</color>
+    <color name="state_warn">#FFFB923C</color>
+    <color name="state_error">#FFF87171</color>
+    <color name="state_idle">#FF7C748F</color>
+
+    <!-- ===== 日志 ===== -->
+    <color name="log_bg">#FF07050D</color>
+    <color name="log_text">#FF8FE3A6</color>
+    <color name="log_title_color">#FFC4B5FD</color>
     <color name="warn">#FFFF8A65</color>
+
+    <!-- 兼容旧引用 -->
+    <color name="violet_primary_soft">#FF2A1F3D</color>
 </resources>

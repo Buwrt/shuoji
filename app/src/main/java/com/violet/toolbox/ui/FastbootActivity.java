@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.core.content.ContextCompat;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -58,6 +59,7 @@ public class FastbootActivity extends BaseActivity {
     }
 
     private void buildButtons() {
+        addSection("读取信息");
         addButton(getString(R.string.fb_getvar), v -> runFastboot(() -> {
             Map<String, String> vars = fb().getvarAll();
             StringBuilder sb = new StringBuilder("===== Fastboot 变量 =====\n");
@@ -67,6 +69,7 @@ public class FastbootActivity extends BaseActivity {
             return sb.toString();
         }));
 
+        addSection("刷写分区");
         addButton(getString(R.string.fb_flash_boot), v -> pickAndFlash("boot"));
         addButton(getString(R.string.fb_flash_init_boot), v -> pickAndFlash("init_boot"));
         addButton(getString(R.string.fb_flash_vendor_boot), v -> pickAndFlash("vendor_boot"));
@@ -87,6 +90,7 @@ public class FastbootActivity extends BaseActivity {
             imageLauncher.launch(new String[]{"*/*"});
         });
 
+        addSection("擦除与解锁");
         addButton(getString(R.string.fb_erase), v -> askText("擦除分区", "请输入分区名（如 userdata / cache）", name -> runFastboot(() -> {
             fb().erase(name);
             return "已擦除分区：" + name;
@@ -107,6 +111,7 @@ public class FastbootActivity extends BaseActivity {
             return "已切换到槽位 " + slot;
         })));
 
+        addSection("重启");
         addButton(getString(R.string.fb_reboot_system), v -> runFastboot(() -> {
             fb().reboot("");
             return "已重启副手机到系统";
@@ -128,8 +133,9 @@ public class FastbootActivity extends BaseActivity {
         AppCompatEditText input = new AppCompatEditText(this);
         input.setHint("fastboot 命令，例如：getvar product");
         input.setSingleLine(true);
-        input.setTextColor(0xFFFFFFFF);
+        input.setTextColor(ContextCompat.getColor(this, R.color.text_primary));
         input.setTextSize(14f);
+        styleInput(input);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.topMargin = 12;
@@ -138,6 +144,7 @@ public class FastbootActivity extends BaseActivity {
         if (container != null) {
             container.addView(input);
         }
+        addSection("自定义命令");
         addButton("执行 fastboot 命令", v -> {
             String cmd = input.getText() == null ? "" : input.getText().toString().trim();
             if (cmd.isEmpty()) {
@@ -240,7 +247,7 @@ public class FastbootActivity extends BaseActivity {
     private void askText(String title, String hint, java.util.function.Consumer<String> consumer) {
         AppCompatEditText input = new AppCompatEditText(this);
         input.setHint(hint);
-        input.setTextColor(0xFFFFFFFF);
+        input.setTextColor(ContextCompat.getColor(this, R.color.text_primary));
         new MaterialAlertDialogBuilder(this)
                 .setTitle(title)
                 .setView(input)

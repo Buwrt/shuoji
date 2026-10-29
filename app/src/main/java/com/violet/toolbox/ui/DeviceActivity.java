@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.core.content.ContextCompat;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -54,6 +55,7 @@ public class DeviceActivity extends BaseActivity {
     }
 
     private void buildButtons() {
+        addSection("设备信息与重启");
         addButton(getString(R.string.adb_collect), v -> runAdb(this::collectInfo));
 
         addButton(getString(R.string.reboot_system), v -> runAdb(() -> reboot("")));
@@ -62,6 +64,7 @@ public class DeviceActivity extends BaseActivity {
         addButton(getString(R.string.reboot_fastbootd), v -> runAdb(() -> reboot("fastboot")));
         addButton(getString(R.string.reboot_edl), v -> runAdb(() -> reboot("edl")));
 
+        addSection("应用与文件");
         addButton(getString(R.string.adb_install_apk), v -> {
             pickForInstall = true;
             fileLauncher.launch(new String[]{"application/vnd.android.package-archive", "*/*"});
@@ -87,11 +90,13 @@ public class DeviceActivity extends BaseActivity {
         }));
 
         // 自定义 shell 命令
+        addSection("自定义命令");
         AppCompatEditText input = new AppCompatEditText(this);
         input.setHint(getString(R.string.adb_shell_hint));
         input.setSingleLine(true);
-        input.setTextColor(0xFFFFFFFF);
+        input.setTextColor(ContextCompat.getColor(this, R.color.text_primary));
         input.setTextSize(14f);
+        styleInput(input);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.topMargin = 12;

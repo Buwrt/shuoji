@@ -128,7 +128,7 @@ public class FlashCenterActivity extends BaseActivity {
         LinearLayout container = findViewById(R.id.container);
 
         TextView tip = new TextView(this);
-        tip.setTextColor(0xFFCE93D8);
+        tip.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
         tip.setTextSize(13f);
         tip.setText("支持：小米 / Redmi 官方 fastboot 线刷包（flash_all.bat、flash_all.sh）、"
                 + "OPPO / 一加 / 真我的 fastboot 散包（images 目录）。");
@@ -142,9 +142,17 @@ public class FlashCenterActivity extends BaseActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item, BrandKit.brands());
         spinner.setAdapter(adapter);
+        android.graphics.drawable.Drawable spinBg =
+                ContextCompat.getDrawable(this, R.drawable.bg_edittext);
+        if (spinBg != null) {
+            spinner.setBackground(spinBg);
+        }
+        float density = getResources().getDisplayMetrics().density;
+        spinner.setPadding((int) (12 * density), (int) (10 * density),
+                (int) (12 * density), (int) (10 * density));
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        lp.topMargin = 10;
+                ViewGroup.LayoutParams.MATCH_PARENT, (int) (52 * density));
+        lp.topMargin = (int) (10 * density);
         spinner.setLayoutParams(lp);
         if (container != null) {
             container.addView(spinner);
@@ -162,6 +170,7 @@ public class FlashCenterActivity extends BaseActivity {
             }
         });
 
+        addSection("线刷准备");
         addButton(getString(R.string.fc_pick_package), v -> treeLauncher.launch(null));
         addButton(getString(R.string.fc_parse), v -> {
             if (packageUri == null) {
@@ -172,7 +181,7 @@ public class FlashCenterActivity extends BaseActivity {
         });
 
         tvPlan = new TextView(this);
-        tvPlan.setTextColor(0xFFFFFFFF);
+        tvPlan.setTextColor(ContextCompat.getColor(this, R.color.text_primary));
         tvPlan.setTextSize(12f);
         tvPlan.setText(getString(R.string.fc_no_plan));
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(
@@ -183,6 +192,7 @@ public class FlashCenterActivity extends BaseActivity {
             container.addView(tvPlan);
         }
 
+        addSection("执行刷写");
         addButton(getString(R.string.fc_start), v -> startFlash());
         addButton("刷完重启到系统", v -> runFastboot(() -> {
             fb().reboot("");

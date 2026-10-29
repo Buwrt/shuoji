@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 启动图标：紫罗兰斜切底 + 手机图形 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+
     <path
-        android:fillColor="#7B1FA2"
+        android:fillColor="#7C3AED"
         android:pathData="M0,0h108v108h-108z" />
+
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M54,22 L84,74 L54,62 L24,74 Z" />
+        android:fillColor="#A855F7"
+        android:pathData="M0,0h108v50l-108,58z" />
+
     <path
-        android:fillColor="#CE93D8"
-        android:pathData="M54,66 L84,80 L54,92 L24,80 Z" />
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M43,26h22a3,3 0,0 1,3 3v50a3,3 0,0 1,-3 3h-22a3,3 0,0 1,-3 -3v-50a3,3 0,0 1,3 -3z" />
+
+    <path
+        android:fillColor="#7C3AED"
+        android:pathData="M45,32h18v42h-18z" />
+
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,77.5a1.8,1.8 0,1 0,0.01 0z" />
 </vector>

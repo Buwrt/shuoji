@@ -1,163 +1,523 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- 首页：渐变头部 + 功能卡片网格 + 日志面板 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:background="@color/bg_base"
+    android:clipToPadding="false"
+    android:paddingBottom="20dp">
 
-    <TextView
-        android:id="@+id/tv_status"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1E1E1E"
-        android:padding="12dp"
-        android:text="@string/home_status_idle"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp" />
+        android:orientation="vertical"
+        android:paddingStart="14dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="14dp">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:columnCount="2">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_device"
-            style="@style/VioletButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:text="@string/btn_device" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_fastboot"
-            style="@style/VioletButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:text="@string/btn_fastboot" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_boot_flash"
-            style="@style/VioletButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:text="@string/btn_boot_flash" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_flash_center"
-            style="@style/VioletButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:text="@string/btn_flash_center" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_terminal"
-            style="@style/VioletButton.Outlined"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:text="@string/btn_terminal" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_wireless"
-            style="@style/VioletButton.Outlined"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:text="@string/btn_wireless" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_rom"
-            style="@style/VioletButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="4"
-            android:layout_column="0"
-            android:text="@string/btn_rom" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_diagnose"
-            style="@style/VioletButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="4"
-            android:layout_column="1"
-            android:text="@string/btn_diagnose" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_sideload"
-            style="@style/VioletButton.Outlined"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="5"
-            android:layout_column="0"
-            android:text="@string/btn_sideload" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_help"
-            style="@style/VioletButton.Outlined"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="5"
-            android:layout_column="1"
-            android:text="@string/btn_help" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_scan"
-            style="@style/VioletButton.Outlined"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_row="6"
-            android:layout_column="0"
-            android:text="@string/btn_scan" />
-
-    </GridLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:text="@string/log_title"
-        android:textColor="#CE93D8"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-    <ScrollView
-        android:id="@+id/log_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        android:layout_weight="1"
-        android:background="@color/log_bg"
-        android:padding="6dp">
-
-        <TextView
-            android:id="@+id/tv_log"
+        <!-- ===== 顶部渐变头图 ===== -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/log_text"
-            android:textSize="11sp"
-            android:typeface="monospace" />
-    </ScrollView>
+            android:background="@drawable/bg_header_gradient"
+            android:orientation="vertical"
+            android:padding="18dp">
 
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_circle_button">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_phone"
+                        android:tint="@color/white" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/home_subtitle"
+                        android:textColor="#D9FFFFFF"
+                        android:textSize="11.5sp" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/btn_scan"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/bg_circle_button"
+                    android:clickable="true"
+                    android:contentDescription="@string/btn_scan"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                    <ImageView
+                        android:layout_width="19dp"
+                        android:layout_height="19dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_sync"
+                        android:tint="@color/white" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- 连接状态条 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_status_pill"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="12dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="10dp">
+
+                <View
+                    android:id="@+id/view_status_dot"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:background="@drawable/bg_dot_idle" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:lineSpacingExtra="2dp"
+                    android:text="@string/home_status_idle"
+                    android:textColor="@color/white"
+                    android:textSize="12.5sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== 常用功能 ===== -->
+        <TextView
+            style="@style/SectionTitle"
+            android:text="@string/section_features" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_device"
+                style="@style/CardFeature"
+                android:layout_row="0"
+                android:layout_column="0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        style="@style/CardIconBox"
+                        android:background="@drawable/bg_icon_violet">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_terminal"
+                            android:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/CardTitle"
+                        android:text="@string/btn_device" />
+
+                    <TextView
+                        style="@style/CardSubtitle"
+                        android:text="@string/sub_device" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_fastboot"
+                style="@style/CardFeature"
+                android:layout_row="0"
+                android:layout_column="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        style="@style/CardIconBox"
+                        android:background="@drawable/bg_icon_cyan">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_bolt"
+                            android:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/CardTitle"
+                        android:text="@string/btn_fastboot" />
+
+                    <TextView
+                        style="@style/CardSubtitle"
+                        android:text="@string/sub_fastboot" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_boot_flash"
+                style="@style/CardFeature"
+                android:layout_row="1"
+                android:layout_column="0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        style="@style/CardIconBox"
+                        android:background="@drawable/bg_icon_pink">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_chip"
+                            android:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/CardTitle"
+                        android:text="@string/btn_boot_flash" />
+
+                    <TextView
+                        style="@style/CardSubtitle"
+                        android:text="@string/sub_boot_flash" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_flash_center"
+                style="@style/CardFeature"
+                android:layout_row="1"
+                android:layout_column="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        style="@style/CardIconBox"
+                        android:background="@drawable/bg_icon_orange">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_layers"
+                            android:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/CardTitle"
+                        android:text="@string/btn_flash_center" />
+
+                    <TextView
+                        style="@style/CardSubtitle"
+                        android:text="@string/sub_flash_center" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_rom"
+                style="@style/CardFeature"
+                android:layout_row="2"
+                android:layout_column="0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        style="@style/CardIconBox"
+                        android:background="@drawable/bg_icon_blue">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_archive"
+                            android:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/CardTitle"
+                        android:text="@string/btn_rom" />
+
+                    <TextView
+                        style="@style/CardSubtitle"
+                        android:text="@string/sub_rom" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_sideload"
+                style="@style/CardFeature"
+                android:layout_row="2"
+                android:layout_column="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        style="@style/CardIconBox"
+                        android:background="@drawable/bg_icon_green">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_upload"
+                            android:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/CardTitle"
+                        android:text="@string/btn_sideload" />
+
+                    <TextView
+                        style="@style/CardSubtitle"
+                        android:text="@string/sub_sideload" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_diagnose"
+                style="@style/CardFeature"
+                android:layout_row="3"
+                android:layout_column="0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        style="@style/CardIconBox"
+                        android:background="@drawable/bg_icon_cyan">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_shield"
+                            android:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/CardTitle"
+                        android:text="@string/btn_diagnose" />
+
+                    <TextView
+                        style="@style/CardSubtitle"
+                        android:text="@string/sub_diagnose" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_terminal"
+                style="@style/CardFeature"
+                android:layout_row="3"
+                android:layout_column="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        style="@style/CardIconBox"
+                        android:background="@drawable/bg_icon_violet">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_code"
+                            android:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/CardTitle"
+                        android:text="@string/btn_terminal" />
+
+                    <TextView
+                        style="@style/CardSubtitle"
+                        android:text="@string/sub_terminal" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_wireless"
+                style="@style/CardFeature"
+                android:layout_row="4"
+                android:layout_column="0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        style="@style/CardIconBox"
+                        android:background="@drawable/bg_icon_pink">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_wifi"
+                            android:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/CardTitle"
+                        android:text="@string/btn_wireless" />
+
+                    <TextView
+                        style="@style/CardSubtitle"
+                        android:text="@string/sub_wireless" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_help"
+                style="@style/CardFeature"
+                android:layout_row="4"
+                android:layout_column="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        style="@style/CardIconBox"
+                        android:background="@drawable/bg_icon_blue">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_help"
+                            android:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/CardTitle"
+                        android:text="@string/btn_help" />
+
+                    <TextView
+                        style="@style/CardSubtitle"
+                        android:text="@string/sub_help" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </GridLayout>
+
+        <!-- ===== 运行日志 ===== -->
+        <TextView
+            style="@style/SectionTitle"
+            android:text="@string/log_title" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/CardPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ScrollView
+                android:id="@+id/log_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:background="@drawable/bg_log_panel"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tv_log"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="2dp"
+                    android:textColor="@color/log_text"
+                    android:textSize="11sp"
+                    android:typeface="monospace" />
+            </ScrollView>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>

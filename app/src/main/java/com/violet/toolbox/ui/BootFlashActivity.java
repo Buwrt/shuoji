@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -74,7 +75,7 @@ public class BootFlashActivity extends BaseActivity {
         LinearLayout container = findViewById(R.id.container);
 
         tvSelected = new TextView(this);
-        tvSelected.setTextColor(0xFFCE93D8);
+        tvSelected.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
         tvSelected.setTextSize(13f);
         tvSelected.setText("尚未选择镜像");
         tvSelected.setLayoutParams(new LinearLayout.LayoutParams(
@@ -83,13 +84,15 @@ public class BootFlashActivity extends BaseActivity {
             container.addView(tvSelected);
         }
 
+        addSection("选择镜像");
         addButton(getString(R.string.bf_pick_image), v -> mainLauncher.launch(new String[]{"*/*"}));
 
         etPartition = new AppCompatEditText(this);
         etPartition.setHint(getString(R.string.bf_partitions));
         etPartition.setSingleLine(true);
-        etPartition.setTextColor(0xFFFFFFFF);
+        etPartition.setTextColor(ContextCompat.getColor(this, R.color.text_primary));
         etPartition.setTextSize(14f);
+        styleInput(etPartition);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.topMargin = 10;
@@ -100,6 +103,7 @@ public class BootFlashActivity extends BaseActivity {
 
         addButton("（可选）选择 vbmeta.img 并关闭校验", v -> vbmetaLauncher.launch(new String[]{"*/*"}));
 
+        addSection("开始刷写");
         addButton(getString(R.string.bf_start), v -> startFlash());
 
         addButton("刷写后重启到系统", v -> runFastboot(() -> {
