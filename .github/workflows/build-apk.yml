@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
         run: |
           set -o pipefail
-          ./gradlew :app:assembleDebug --stacktrace 2>&1 | tee build-debug.log
+          ./gradlew :app:assembleDebug --stacktrace 2>&1 | tee /tmp/build-debug.log
           echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
 
       - name: 构建发布版 APK
@@ -42,25 +42,7 @@ jobs:
         if: steps.build_debug.outputs.exit_code == '0'
         run: |
           set -o pipefail
-          ./gradlew :app:assembleRelease --stacktrace 2>&1 | tee build-release.log
-
-      - name: 归档构建日志到 ci-logs 分支
-        if: always()
-        run: |
-          set -e
-          mkdir -p /tmp/cilog
-          [ -f build-debug.log ] && cp build-debug.log /tmp/cilog/ || echo "无调试日志" > /tmp/cilog/build-debug.log
-          [ -f build-release.log ] && cp build-release.log /tmp/cilog/ || true
-          git config user.name "ci-bot"
-          git config user.email "ci-bot@users.noreply.github.com"
-          git checkout --orphan ci-logs
-          git rm -rf --cached . -q || true
-          rm -rf ./* || true
-          cp /tmp/cilog/build-debug.log .
-          [ -f /tmp/cilog/build-release.log ] && cp /tmp/cilog/build-release.log . || true
-          git add -A
-          git commit -m "CI 构建日志 ${{ github.run_number }}" || echo "无变化"
-          git push -f origin ci-logs
+          ./gradlew :app:assembleRelease --stacktrace 2>&1 | tee /tmp/build-release.log
 
       - name: 上传调试版 APK
         if: steps.build_debug.outputs.exit_code == '0'
@@ -68,6 +50,7 @@ jobs:
         with:
           name: VioletToolBoxMobile-debug
           path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
 
       - name: 上传发布版 APK
         if: steps.build_debug.outputs.exit_code == '0'
@@ -75,6 +58,39 @@ jobs:
         with:
           name: VioletToolBoxMobile-release
           path: app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
+
+      - name: 归档 APK 到 apk 分支
+        if: steps.build_debug.outputs.exit_code == '0'
+        run: |
+          set -e
+          mkdir -p /tmp/apks
+          cp app/build/outputs/apk/debug/app-debug.apk /tmp/apks/VioletToolBoxMobile-debug.apk
+          cp app/build/outputs/apk/release/app-release.apk /tmp/apks/VioletToolBoxMobile-release.apk
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          git checkout --orphan apk
+          git rm -rf --cached . -q || true
+          rm -rf ./* || true
+          cp /tmp/apks/*.apk .
+          git add -A
+          git commit -m "APK ${{ github.run_number }}" || echo "无变化"
+          git push -f origin apk
+
+      - name: 归档构建日志到 ci-logs 分支
+        if: always()
+        run: |
+          set -e
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          git checkout --orphan ci-logs
+          git rm -rf --cached . -q || true
+          rm -rf ./* || true
+          cp /tmp/build-debug.log . || echo "无调试日志" > build-debug.log
+          cp /tmp/build-release.log . 2>/dev/null || true
+          git add -A
+          git commit -m "CI 构建日志 ${{ github.run_number }}" || echo "无变化"
+          git push -f origin ci-logs
 
       - name: 构建失败则中止
         if: steps.build_debug.outputs.exit_code != '0'
