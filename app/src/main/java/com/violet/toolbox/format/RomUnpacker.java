@@ -41,7 +41,7 @@ public final class RomUnpacker {
         public final File file;
         public final long size;
 
-        Output(String name, File file, long size) {
+        public Output(String name, File file, long size) {
             this.name = name;
             this.file = file;
             this.size = size;
