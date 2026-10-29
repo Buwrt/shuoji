@@ -426,7 +426,14 @@ public class AdbConnection implements Closeable {
 
     private void handleAuth(AdbProtocol.Message msg) throws IOException {
         if (msg.arg0 == AdbProtocol.AUTH_TYPE_TOKEN) {
-            byte[] signature = crypto.signToken(msg.data);
+            byte[] signature;
+            try {
+                signature = crypto.signToken(msg.data);
+            } catch (IOException e) {
+                throw e;
+            } catch (Exception e) {
+                throw new IOException("ADB 主机密钥签名失败：" + e.getMessage(), e);
+            }
             writeMessage(AdbProtocol.CMD_AUTH, AdbProtocol.AUTH_TYPE_SIGNATURE, 0, signature);
             if (!sentPublicKey) {
                 sentPublicKey = true;
