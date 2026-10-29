@@ -1,6 +1,7 @@
 package com.violet.toolbox.usb;
 
 import android.content.Context;
+import android.hardware.usb.UsbConstants;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbEndpoint;
 import android.hardware.usb.UsbInterface;
@@ -105,10 +106,10 @@ public final class UsbHost {
             UsbEndpoint out = null;
             for (int j = 0; j < iface.getEndpointCount(); j++) {
                 UsbEndpoint ep = iface.getEndpoint(j);
-                if (ep.getType() != UsbEndpoint.TYPE_BULK) {
+                if (ep.getType() != UsbConstants.USB_ENDPOINT_XFER_BULK) {
                     continue;
                 }
-                if (ep.getDirection() == UsbEndpoint.USB_DIR_IN) {
+                if (ep.getDirection() == UsbConstants.USB_DIR_IN) {
                     in = ep;
                 } else {
                     out = ep;
