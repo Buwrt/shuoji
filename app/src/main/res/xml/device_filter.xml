@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- USB 设备过滤器：ADB 调试接口与 Fastboot / FastbootD 接口 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
+    USB 设备过滤器：ADB 调试接口与 Fastboot / FastbootD 接口。
 
-    <!-- ADB 接口：Class=0xFF, SubClass=0x42, Protocol=0x01 -->
+    注意：res/xml 下的 device_filter.xml 中 <usb-device> 的属性不能带 android: 前缀，
+    否则 AAPT 会报 "attribute android:class not found" 导致资源链接失败。
+-->
+<resources>
+
+    <!-- ADB 接口：Class=0xFF(255), SubClass=0x42(66), Protocol=0x01 -->
     <usb-device
-        android:class="255"
-        android:subclass="66"
-        android:protocol="1" />
+        class="255"
+        subclass="66"
+        protocol="1" />
 
     <!-- Fastboot / FastbootD 接口：Protocol=0x03 -->
     <usb-device
-        android:class="255"
-        android:subclass="66"
-        android:protocol="3" />
+        class="255"
+        subclass="66"
+        protocol="3" />
 
-    <!-- 高通 EDL（9008）常见 VID/PID，便于后续扩展 -->
+    <!-- 高通 EDL（9008）常见 VID/PID：0x05C6 / 0x9008，便于后续扩展 -->
     <usb-device
-        android:vendor-id="51966"
-        android:product-id="36881" />
+        vendor-id="1478"
+        product-id="36872" />
 </resources>
